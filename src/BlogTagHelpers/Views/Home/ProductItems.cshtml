@@ -1,0 +1,14 @@
+﻿@model IList<BlogTagHelpers.Core.Models.ProductItem>
+@{
+    ViewData["Title"] = "Product Items";
+}
+
+<h2>Product Items</h2>
+<div class="row">   
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <product-item item="@item"></product-item>               
+        </div>
+    } 
+</div>

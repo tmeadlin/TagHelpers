@@ -1,0 +1,36 @@
+﻿@using BlogTagHelpers.Core.Models
+@model BlogTagHelpers.Core.Models.Cart
+@{
+    ViewData["Title"] = "Product Items";
+}
+
+<h2>Checkout</h2>
+<div class="row">
+    <div class="col-md-9">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product Info</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var cartItem in Model.Items)
+                {
+                    <tr>
+                        <td>
+                            <image image-name="@cartItem.ImageName"></image>
+                            <label>@cartItem.Name</label>
+                            <span limit-to="80">@cartItem.Description</span>
+                        </td>
+                        <td>$@cartItem.Price</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3">
+        <cart-total cart-subtotal="@Model.Subtotal" cart-tax="@Model.Tax" cart-shipping="@Model.ShippingAmount"></cart-total>
+    </div>
+</div>

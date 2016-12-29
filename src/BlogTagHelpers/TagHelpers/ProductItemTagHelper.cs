@@ -20,7 +20,7 @@ namespace BlogTagHelpers.TagHelpers
         {
             return $@"<div class='row'>
                                 <div class='col-md-12'>
-                                    <img src = 'images/{Item.ImageName}-300.png' class='ull-left' />
+                                    <img src = 'images/{Item.ImageName}-300.png' class='pull-left' />
                                 </div>
                             </div>
 

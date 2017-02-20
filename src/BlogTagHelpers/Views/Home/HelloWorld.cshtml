@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Hello World TagHelper";
+}
+
+<h4 class="title">My First TagHelper</h4>
+<div><b>Your TagHelper</b></div>
+<pre>
+<code>
+        public class HelloworldTagHelper : TagHelper
+        {
+            public override void Process(TagHelperContext context, TagHelperOutput output)
+            {
+                output.TagName = "span";
+                output.Content.SetContent("Hello World");
+            }
+        }
+    </code>
+</pre>
+<div><b>Your HTML Code</b></div>
+<pre>
+    <code>
+        &lt;helloworld&gt;&lt;/helloworld&gt;
+    </code>
+</pre>
+
+<div><b>Your Rendered HTML</b></div>
+<pre>
+    <code>
+        &lt;span&gt;Hello World&lt;/span&gt;
+    </code>
+</pre>
+
+<div><b>Working Example</b></div>
+<p>
+    <helloworld></helloworld>
+</p>

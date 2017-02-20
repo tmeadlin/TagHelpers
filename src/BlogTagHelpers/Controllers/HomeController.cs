@@ -19,7 +19,27 @@ namespace BlogTagHelpers.Controllers
             _cartManager = cartManager;
         }
 
-        public IActionResult Index()
+        public IActionResult HelloWorld()
+        {
+            return View("HelloWorld");
+        }
+
+        public IActionResult NamingConventions()
+        {
+            return View();
+        }
+
+        public IActionResult AttributeExamples()
+        {
+            return View();
+        }
+
+        public IActionResult SettingContent()
+        {
+            return View();
+        }
+
+        public IActionResult Products()
         {
             var productItems = _productManager.GetAll();
             return View("ProductItems", productItems);

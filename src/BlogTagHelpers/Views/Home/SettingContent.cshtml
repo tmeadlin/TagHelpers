@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Setting Content";
+}
+
+<h4 class="title">Re-writing content based upon existing text</h4>
+<div><b>Your TagHelper</b></div>
+<pre>
+<code>
+        [HtmlTargetElement("content-example")]
+        public class SettingContentTagHelper : TagHelper
+        {
+            public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+            {
+                <b class="emphasize-code">var content = await output.GetChildContentAsync();</b>
+                var name = content.GetContent();
+                output.Content.SetContent($"Hello, {name}");
+            }
+        }
+    </code>
+</pre>
+<div><b>Your HTML Code</b></div>
+<pre>
+<code>
+        &lt;content-example&gt;New User&lt;/content-example&gt;
+    </code>
+</pre>
+
+<div><b>Working Example</b></div>
+<p>
+    <content-example>New User</content-example>
+</p>
+
+<br /><br />
+
+<h4 class="title">Appending new content to text</h4>
+<div><b>Your TagHelper</b></div>
+<pre>
+<code>
+        [HtmlTargetElement("content-example2")]
+        public class SettingContent2TagHelper : TagHelper
+        {
+            public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+            {
+                var content = await output.GetChildContentAsync();
+                content.Append(", Hello World");
+                output.Content = content;
+            }
+        }
+    </code>
+</pre>
+<div><b>Your HTML Code</b></div>
+<pre>
+<code>
+        &lt;content-example2&gt;New User&lt;/content-example2&gt;
+    </code>
+</pre>
+
+<div><b>Working Example</b></div>
+<p>
+    <content-example2>New User</content-example2>
+</p>
+
+<br /><br />
+
+<h4 class="title">Re-writing content with Html</h4>
+<div><b>Your TagHelper</b></div>
+<pre>
+<code>
+        [HtmlTargetElement("content-example3")]
+        public class SettingContent3TagHelper : TagHelper
+        {
+            public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+            {
+                var content = await output.GetChildContentAsync();
+                var name = content.GetContent();
+                output.Content.SetHtmlContent($"Hello, &lt;b&gt;{name}&lt;/b&gt;");
+            }
+        }
+    </code>
+</pre>
+<div><b>Your HTML Code</b></div>
+<pre>
+<code>
+        &lt;content-example3&gt;New User&lt;/content-example3&gt;
+    </code>
+</pre>
+
+<div><b>Working Example</b></div>
+<p>
+    <content-example3>New User</content-example3>
+</p>

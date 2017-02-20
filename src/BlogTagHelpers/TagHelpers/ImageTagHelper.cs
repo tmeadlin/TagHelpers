@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using BlogTagHelpers.Interfaces;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace BlogTagHelpers.TagHelpers
 {

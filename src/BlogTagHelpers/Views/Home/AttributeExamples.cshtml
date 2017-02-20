@@ -1,0 +1,101 @@
+﻿@using BlogTagHelpers.Models
+@{
+    ViewData["Title"] = "Element Attributes & HtmlAttributeName";
+}
+
+<h4 class="title">Element Attributes</h4>
+<div><b>Your TagHelper</b></div>
+<pre>
+    <code>
+        [HtmlTargetElement("attribute-example", Attributes = "to-name")]
+        public class AttributeTagHelper : TagHelper
+        {
+            <b class="emphasize-code">public string ToName { get; set; }</b>
+            public override void Process(TagHelperContext context, TagHelperOutput output)
+            {
+                output.TagName = "span";
+                output.Content.SetContent($"Hello, {ToName}");
+            }
+        }
+    </code>
+</pre>
+<div><b>Your HTML Code</b></div>
+<pre>
+<code>
+        &lt;attribute-example to-name="Tyler"&gt;&lt;/attribute-example&gt;
+    </code>
+</pre>
+
+<div><b>Working Example</b></div>
+<p>
+    <attribute-example to-name="Tyler"></attribute-example>
+</p>
+
+<br/><br/>
+
+<h4 class="title">Using HtmlAttributeName</h4>
+<div><b>Your TagHelper</b></div>
+<pre>
+<code>
+        [HtmlTargetElement("attribute-example2", Attributes = "to-name")]
+        public class Attribute2TagHelper : TagHelper
+        {
+            <b class="emphasize-code">[HtmlAttributeName("to-name")]</b>
+            public string Name { get; set; }
+            public override void Process(TagHelperContext context, TagHelperOutput output)
+            {
+                output.TagName = "span";
+                output.Content.SetContent($"Hello, {Name}");
+            }
+        }
+    </code>
+</pre>
+<div><b>Your HTML Code</b></div>
+<pre>
+<code>
+        &lt;attribute-example2 to-name="Tyler HtmlAttribute"&gt;&lt;/attribute-example2&gt;
+    </code>
+</pre>
+
+<div><b>Working Example</b></div>
+<p>
+    <attribute-example2 to-name="Tyler HtmlAttribute"></attribute-example2>
+</p>
+
+<br /><br />
+
+<h4 class="title">Passing Non-String Attributes</h4>
+<div><b>Your TagHelper</b></div>
+<pre>
+<code>
+        [HtmlTargetElement("attribute-example3")]
+        public class Attribute3TagHelper : TagHelper
+        {
+            <b class="emphasize-code">public double Price { get; set; }</b>
+            <b class="emphasize-code">public ExampleModel Example { get; set; }</b>
+
+            public override void Process(TagHelperContext context, TagHelperOutput output)
+            {
+                output.TagName = "span";
+                output.Content.SetContent($"Price Value: ${Price}. Example Text: {Example.Text}");
+            }
+        }
+    </code>
+</pre>
+<div><b>Your HTML Code</b></div>
+<pre>
+<code>
+        &#64;{
+            var exampleModel = new ExampleModel {Text = "Some Text"};
+        }
+        &lt;attribute-example3 price="15.99" example="&#64;exampleModel"&gt;&lt;/attribute-example3&gt;
+    </code>
+</pre>
+
+<div><b>Working Example</b></div>
+<p>
+    @{
+        var exampleModel = new ExampleModel {Text = "Some Text"};
+    }
+    <attribute-example3 price="15.99" example="@exampleModel"></attribute-example3>
+</p>
